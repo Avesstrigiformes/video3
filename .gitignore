@@ -1,0 +1,29 @@
+# Ignore media folder (renders)
+media/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+
+# Ignore temporary files
+*.temp
+*.log
+
+# Ignore virtual environments
+venv/
+.env
+
+# Ignore OS-specific files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore large output or debug files
+*.mp4
+*.png
+*.mov
