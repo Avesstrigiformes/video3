@@ -6,6 +6,9 @@ from numpy import sin, cos, pi, array
 brachisto = Text(r"βράχιστος χρόνος", font="Arial", font_size=100).set_color_by_gradient(RED, GREEN)
 brachisto0 = MathTex(r"\underbrace{\qquad\qquad\qquad}_{\text{shortest time}}", font_size=100).set_color_by_gradient(RED, GREEN)
 r1 = Tex(r"We want to minimize: $\int dt$").shift(UP*2).scale(2)
+a0 = MathTex(r"?").scale(6).set_color(PURPLE_C)
+binfo = Tex("We want to find the equation of the curve which $''$the time taken by an object sliding without friction in uniform gravity to its lowest point is the shortest time possible$''$").scale(0.6).to_edge(DOWN).shift(LEFT)
+bstart = Tex("Let's start").scale(1.3).set_color(BLUE)
 
 #Im not gonna write a realistic code for this, but you get the idea lol
 
@@ -80,5 +83,5 @@ rendered_code3 = Code(
     background="window",
     background_config={"stroke_color": "maroon"},
 ).scale(0.4)
-a0 = MathTex(r"?").scale(6).set_color(PURPLE_C)
-print()
+
+#Brachistochrone

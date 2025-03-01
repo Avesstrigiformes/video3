@@ -27,3 +27,5 @@ Thumbs.db  # Windows
 *.mp4
 *.png
 *.mov
+
+test.py

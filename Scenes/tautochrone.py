@@ -1,6 +1,6 @@
 from manim import *
 from numpy import pi, array
-from brachistochrone import acceleration2, brachistochrone, brachistochrone1, dot1, dot2, dot3, start_label, end_label
+from Scenes.brachistochrone import acceleration2, brachistochrone, brachistochrone1, dot1, dot2, dot3, start_label, end_label
 
 #Intro 
 
@@ -14,7 +14,7 @@ tauto = Text(r"ταὐτόχρόνος", font="Arial", font_size=100).set_color_
 tauto0 = MathTex(r"\underbrace{\qquad\qquad}_{\text{same time}}", font_size=100).set_color_by_gradient(RED, GREEN)
 t1 = Tex(r"We want to fix: $\int dt$").shift(UP*2).scale(2)
 
-#Tautochrone
+#Tautochrone Graph
 
 brachistochrone2 = brachistochrone(t_range = array([1.5, pi]))
 brachistochrone3 = brachistochrone(t_range = array([2.5, pi]))
@@ -29,3 +29,34 @@ rendered_code0 = Code(
     background="window",
     background_config={"stroke_color": "maroon"},
 ).scale(0.4).to_corner(UR)
+tinfo = Tex(r"We want to find the equation of the curve which $''$the time taken by an object sliding without friction in uniform gravity to its lowest point is independent of its starting point on the curve$''$").scale(0.6).move_to(UR*2 + DOWN)
+tstart = Tex(r"Let's start").scale(1.3).set_color(ORANGE)
+
+#Tautochrone
+
+t1 = MathTex(r"t = \frac{s}{v}")
+t2 = MathTex(r"dt = \frac{ds}{v}")
+t3 = MathTex(r"mgh = \frac{1}{2}mv^2")
+t31 = MathTex(r"E_{i} = E_{f}")
+t4 = MathTex(r"v = \sqrt{2gh}")
+t5 = MathTex(r"ds = \sqrt{dx^2+dy^2}")
+t51 = MathTex(r"ds = \sqrt{1+(y')^2}dx")
+t6 = MathTex(r"dt = \frac{\sqrt{1+(y')^2}}{\sqrt{2gh}}dx")
+t61 = MathTex(r"\int dt = \int \frac{\sqrt{1+(y')^2}}{\sqrt{2gh}}dx")
+t62 = MathTex(r"T = \int \frac{\sqrt{1+(y')^2}}{\sqrt{2gh}}dx")
+def start0(self):
+    self.play(Write(t1))
+    self.play(TransformMatchingShapes(t1, t2))
+    self.play(t2.animate.to_corner(UL).set_color(RED))
+    self.play(Write(t31))
+    self.play(TransformMatchingShapes(t31, t3))
+    self.play(TransformMatchingShapes(t3, t4))
+    self.play(t4.animate.to_corner(UR).set_color(RED))
+    self.play(Write(t5))
+    self.play(TransformMatchingShapes(t5, t51))
+    self.play(t2.animate.move_to(ORIGIN), t51.animate.to_edge(UP).set_color(RED))
+    tt = VGroup(t2, t4, t51)
+    self.wait(1)
+    self.play(TransformMatchingShapes(tt, t6))
+    self.play(TransformMatchingShapes(t6, t61))
+    self.play(TransformMatchingShapes(t61, t62))

@@ -1,12 +1,13 @@
 from manim import *
-from tautochrone import *
-from brachistochrone import *
-from beltrami import *
-from cycloid import *
+from Scenes.tautochrone import *
+from Scenes.brachistochrone import *
+from Scenes.beltrami import *
+from Scenes.cycloid import *
 
 
 ###NOTE: Keep in mind that the video will be long, so you might want to split it into multiple classes if you want to keep track of the code. I will just put everything in one class for rendering purposes.
 
+#TODO: Edit Outro!!!!
 
 class Video(Scene):
     def construct(self):
@@ -19,26 +20,6 @@ class Video(Scene):
         self.play(FadeOut(PROBLEM, t, rect))
         self.clear()
         '''
-        #Tautochrone Intro
-        '''
-        self.play(Write(tauto))
-        self.play(Write(tauto0.next_to(tauto, DOWN)))
-        self.play(Write(t1))
-        self.wait(2)
-        self.play(FadeOut(tauto, tauto0, t1))
-        self.clear()
-        '''
-        #Tautochrone Graph
-        '''                   WE WANT TO FIND THE EQUATION OF THE CURVE THAT MAKES THE TIME TAKEN BY A BALL TO ROLL DOWN THE CURVE SAME FOR ALL POINTS ON THE CURVE UNDER THE INFLUENCE OF GRAVITY
-        self.play(Create(brachistochrone1))
-        self.play(Write(start_label), Write(end_label))
-        self.play(Write(rendered_code0))
-        self.play(MoveAlongPath(dot1, brachistochrone1), MoveAlongPath(dot2, brachistochrone2), MoveAlongPath(dot3, brachistochrone3), run_time=4, rate_func=acceleration2)
-        self.wait(2)
-        self.play(FadeOut(brachistochrone1, start_label, end_label, rendered_code0, dot1, dot2, dot3))
-        self.clear()
-        '''
-        #Tautochrone
         #Brachistochrone Intro
         '''
         self.play(Write(brachisto))
@@ -49,17 +30,21 @@ class Video(Scene):
         self.clear()
         '''
         #Brachistochrone Graph
-        '''                   WE WANT TO FIND THE EQUATION OF THE CURVE THAT MAKES THE TIME TAKEN BY A BALL TO ROLL DOWN THE CURVE THE LEAST UNDER THE INFLUENCE OF GRAVITY
+        '''
         self.play(Create(brachistochrone1), Create(straight), Create(arc))
         self.play(Write(start_label), Write(end_label))
         self.play(Write(rendered_code1), Write(rendered_code2.next_to(rendered_code1, LEFT)), Write(rendered_code3.next_to(rendered_code1, DOWN)))
         self.play(MoveAlongPath(dot1, brachistochrone1, rate_func=acceleration2), MoveAlongPath(dot2, straight, rate_func=acceleration2), MoveAlongPath(dot3, arc, rate_func=acceleration2), run_time=2)
         self.play(Write(a0))
+        self.play(Write(binfo))
         self.wait(2)
-        self.play(FadeOut(brachistochrone1, straight, arc, start_label, end_label, rendered_code1, rendered_code2, rendered_code3, dot1, dot2, dot3, a0))
+        self.play(Write(bstart))
+        self.play(Flash(bstart, line_length=0.5, num_lines=50, color=BLUE, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
+        self.play(FadeOut(brachistochrone1, straight, arc, start_label, end_label, rendered_code1, rendered_code2, rendered_code3, dot1, dot2, dot3, a0, binfo, bstart))
         self.clear()
         '''
         #Brachistochrone
+        start0(self)
         #Beltrami
         '''
         self.play(Write(b1))
@@ -80,6 +65,32 @@ class Video(Scene):
         self.clear()
         '''
         #Brachistochrone 2
+        #Tautochrone Intro
+        '''
+        self.play(Write(tauto))
+        self.play(Write(tauto0.next_to(tauto, DOWN)))
+        self.play(Write(t1))
+        self.wait(2)
+        self.play(FadeOut(tauto, tauto0, t1))
+        self.clear()
+        '''
+        #Tautochrone Graph
+        '''
+        self.play(Create(brachistochrone1))
+        self.play(Write(start_label), Write(end_label))
+        self.play(Write(rendered_code0))
+        self.play(Write(tinfo))
+        self.play(MoveAlongPath(dot1, brachistochrone1), MoveAlongPath(dot2, brachistochrone2), MoveAlongPath(dot3, brachistochrone3), run_time=4, rate_func=acceleration2)
+        self.wait(2)
+        self.play(Write(tstart))
+        self.play(Flash(tstart, line_length=0.5, num_lines=50, color=ORANGE, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
+        self.play(FadeOut(brachistochrone1, start_label, end_label, rendered_code0, dot1, dot2, dot3, tinfo, tstart))
+        self.clear()
+        '''
+        #Tautochrone
+        '''
+        start0(self)
+        '''
         #Cycloid
         '''
         self.play(Create(axes), Create(diagonallines))
@@ -115,13 +126,14 @@ class Video(Scene):
         update_all()
         self.wait(7)
         self.play(FadeOut(axes, diagonallines, path, info, groundline))
-        self.clear()
+        self.clear()            
         '''
-        #End
+        #Outro
+        '''
         self.play(Write(end, run_time=8))
-        self.wait(1)
-        self.play(FadeOut(end), DrawBorderThenFill(tfw))
+        self.play(DrawBorderThenFill(endgroup))
+        self.wait(4)
+        self.play(FadeOut(end, endgroup), DrawBorderThenFill(tfw))
         self.wait(3)
-
-        
+        '''
         self.wait(5)

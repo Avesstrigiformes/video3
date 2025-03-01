@@ -93,7 +93,18 @@ def remove_all():
     perpendicularline.remove_updater(update_perpendicularline)
     angle.remove_updater(update_angle)
 
-#TODO: use arrows and text boxes 5 times from up right to down right.
-end = Tex(r"I hope you found this video useful! You can check out these for similar problems:\\ $\bullet\text{Catenary Problem}$\\ $\bullet\text{Optimal Shape of a Rotating Fluid}$\\ $\bullet\text{Ideal Rocket Equation}$\\ $\bullet\text{Path of a Particle in a Central Force Field}$\\ $\bullet\text{Bubble Equation}$")
-tfw = Union(*Tex(r"Thanks for Watching").scale(2).copy()[0]).set_color_by_gradient([PURE_RED, PURE_BLUE]).set_sheen_direction(UR)
+#Outro
 
+end = Tex(r"I hope you found this video useful! You can check out\\ these for similar problems:\\ $\bullet\text{Catenary Problem}$\\ $\bullet\text{Optimal Shape of a Rotating Fluid}$\\ $\bullet\text{Ideal Rocket Equation}$\\ $\bullet\text{Path of a Particle in a Central Force Field}$\\ $\bullet\text{Bubble Equation}$")
+end2 = MathTex(r"\boxed{\frac{1}{k}\cosh(kx+A)+B}").to_corner(UL)
+end3 = MathTex(r"\boxed{\text{Paraboloid}}").next_to(end2)
+end4 = MathTex(r"\boxed{\Delta v=v_{e}+\ln\left(\frac{m_{0}}{m_{f}}\right)}").next_to(end3)
+end5 = MathTex(r"---").to_corner(DL)
+end6 = MathTex(r"\boxed{\int^{x_2}_{x_1}2\pi f(x)\sqrt{1+(f'(x))^2}dx}").to_corner(DR)
+arrow2 = Arrow(end[0][67:83].get_center(), end2.get_center(), color=RED, stroke_width=2, tip_length=0.2)
+arrow3 = Arrow(end[0][83:112].get_center(), end3.get_center(), color=RED, stroke_width=2, tip_length=0.2)
+arrow4 = Arrow(end[0][112:132].get_center(), end4.get_center(), color=RED, stroke_width=2, tip_length=0.2)
+arrow5 = Arrow(end[0][132:168].get_center(), end5.get_center(), color=RED, stroke_width=2, tip_length=0.2)
+arrow6 = Arrow(end[0][168::].get_center(), end6.get_center(), color=RED, stroke_width=2, tip_length=0.2)
+endgroup = VGroup(end2, end3, end4, end5, end6, arrow2, arrow3, arrow4, arrow5, arrow6)
+tfw = Union(*Tex(r"Thanks for Watching").scale(2).copy()[0]).set_color_by_gradient([PURE_RED, PURE_BLUE]).set_sheen_direction(UR)

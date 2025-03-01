@@ -1,8 +1,8 @@
 from manim import *
 class Test(Scene):
     def construct(self):
-        #self.play(TransformMatchingShapes())
-
+        a = MathTex("a").to_edge(DOWN).shift(LEFT)
+        self.play(Write(a))
         '''        
         def create_glow(mobject, strength, color=WHITE):
             glow_group = VGroup()
