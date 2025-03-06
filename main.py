@@ -4,10 +4,9 @@ from Scenes.brachistochrone import *
 from Scenes.beltrami import *
 from Scenes.cycloid import *
 
-
 ###NOTE: Keep in mind that the video will be long, so you might want to split it into multiple classes if you want to keep track of the code. I will just put everything in one class for rendering purposes.
 
-#TODO: Edit Outro!!!!
+#TODO: Edit Outro, readme.
 
 class Video(Scene):
     def construct(self):
@@ -42,9 +41,19 @@ class Video(Scene):
         self.play(Flash(bstart, line_length=0.5, num_lines=50, color=BLUE, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
         self.play(FadeOut(brachistochrone1, straight, arc, start_label, end_label, rendered_code1, rendered_code2, rendered_code3, dot1, dot2, dot3, a0, binfo, bstart))
         self.clear()
-        '''
+        ''' 
         #Brachistochrone
+        '''
         start0(self)
+        self.play(Write(b00))
+        self.play(Write(b01), Create(b04))
+        self.play(Write(b02))
+        self.wait(3)
+        self.remove(b04)
+        self.play(Write(b03))
+        self.play(FadeOut(b00, b01, b02, b03, t62))
+        self.clear()
+        '''
         #Beltrami
         '''
         self.play(Write(b1))
@@ -52,19 +61,74 @@ class Video(Scene):
         self.play(FadeOut(b10), FadeOut(b11), ReplacementTransform(b1,b2))
         self.play(ReplacementTransform(b2,b20))
         self.play(Write(b3))
+        self.wait(1)
         self.play(ReplacementTransform(b3,b4))
+        self.wait(1)
         self.play(FadeOut(b20[0][15::],b4[0][15::]), b20[0][:15].animate.move_to(b4[0][15::].get_center() + RIGHT*0.8).set_color(WHITE))
+        self.wait(1)
         self.play(b204.animate.to_corner(UL).set_color(GREEN))
         self.play(Write(b5))
+        self.wait(1)
         self.play(FadeOut(b5[0][25::], b204[1]), b204[0].animate.move_to(b5[0][25::].get_center() + RIGHT*0.1).set_color(RED))
+        self.wait(1)
         arc = ArcBetweenPoints(b204[0][:5].get_center(), b5[0][14].get_center() + RIGHT*0.7, angle=PI)
+        self.wait(1)
         self.play(FadeOut(b5[0][15:25], b204[0][5::]), MoveAlongPath(b204[0][:5], arc), b5[0][14].animate.move_to(RIGHT*0.6), Write(b50.next_to(b5[0][13], RIGHT)))
         self.play(Write(b51.next_to(b5[0][14], RIGHT)))
+        self.wait(1)
         self.play(ReplacementTransform(VGroup(b204[0][:5], b5[0][:15], b50, b51), b6))
+        self.wait(1)
         self.play(ReplacementTransform(b6, b7))
-        self.clear()
+        self.play(TransformMatchingShapes(b7, b8))
         '''
         #Brachistochrone 2
+        '''
+        self.play(Write(b8))
+        self.play(b8.animate.to_corner(UL).set_color(GREEN))
+        self.play(Write(j1))
+        self.play(j1.animate.shift(DOWN), Write(j2))
+        self.wait(3)
+        jgroup = VGroup(b8, j1, j2)
+        self.play(TransformMatchingShapes(jgroup, j3))
+        self.wait(1)
+        self.play(TransformMatchingShapes(j3, j4))
+        self.wait(1)
+        self.play(TransformMatchingShapes(j4, j5))
+        self.wait(1)
+        self.play(TransformMatchingShapes(j5, j6))
+        self.wait(1)
+        self.play(Write(j7), ReplacementTransform(j6, j8))
+        self.play(TransformMatchingShapes(j8, j9))
+        self.wait(2)
+        self.play(FadeOut(j7))
+        self.play(TransformMatchingShapes(j9, j10))
+        self.play(TransformMatchingShapes(j10, j11))
+        self.play(TransformMatchingShapes(j11, j12))
+        self.wait(2)
+        self.play(Write(j13))
+        self.wait(2)
+        self.play(FadeOut(j13), TransformMatchingShapes(j12, j14))
+        '''
+        self.play(Write(j14))
+        #Remove only after the last scene
+
+        self.play(j14.animate.to_corner(UL).set_color(PURE_RED))
+        self.play(Write(j15))
+        self.play(Write(j16))
+        self.play(Write(j17))
+        self.wait(2)
+        self.play(TransformMatchingShapes(VGroup(j14,j15), j18))
+        self.play(FadeOut(j17))
+        self.play(TransformMatchingShapes(VGroup(j18,j16), j19))
+        self.play(j19.animate.move_to(ORIGIN))
+        self.wait(2)
+        self.play(TransformMatchingShapes(j19, j20))
+        self.play(TransformMatchingShapes(j20, j21))
+        self.play(TransformMatchingShapes(j21, j22))
+        self.wait(2)
+        self.play(Write(j23))
+        self.play(TransformMatchingShapes(j22, j23))
+        
         #Tautochrone Intro
         '''
         self.play(Write(tauto))
@@ -92,7 +156,7 @@ class Video(Scene):
         start0(self)
         '''
         #Cycloid
-        '''
+        r'''
         self.play(Create(axes), Create(diagonallines))
         self.play(Create(circle), Create(dot), Create(path), Write(info))
         self.add(radius, centerline, centerr, perpendicularline, groundline, angle)

@@ -2,7 +2,6 @@ from manim import *
 
 #Label indices with index_labels(mathtex[0])
 #Cancel out a part of a math expression with cancel(mathtex[0][start:end])
-#This code is a bit primitive, but it gets the job done
 
 def cancel(mob):
     return Line(mob.get_corner(UR), mob.get_corner(DL), color=RED)
@@ -22,3 +21,4 @@ b50 = MathTex(r"-", color = RED)
 b51 = MathTex(r"0", color=RED)
 b6 = MathTex(r"\frac{d}{dx}\left[y'\frac{\partial F}{\partial y'}-F\right]=0")
 b7 = MathTex(r"y'\frac{\partial F}{\partial y'}-F=C")
+b8 = MathTex(r"F-y'\frac{\partial F}{\partial y'}=C")

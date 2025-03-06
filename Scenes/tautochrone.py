@@ -59,4 +59,4 @@ def start0(self):
     self.wait(1)
     self.play(TransformMatchingShapes(tt, t6))
     self.play(TransformMatchingShapes(t6, t61))
-    self.play(TransformMatchingShapes(t61, t62))
+    self.play(ReplacementTransform(t61, t62))
