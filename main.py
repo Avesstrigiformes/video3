@@ -4,7 +4,7 @@ from Scenes.brachistochrone import *
 from Scenes.beltrami import *
 from Scenes.cycloid import *
 
-###NOTE: Keep in mind that the video will be long, so you might want to split it into multiple classes if you want to keep track of the code. I will just put everything in one class for rendering purposes.
+###NOTE: Keep in mind that the render will be long, so you might want to split it into multiple classes if you want to keep track of the code. I will just put everything in one class for some rendering purposes.
 
 #TODO: Edit Outro, readme.
 
@@ -108,10 +108,6 @@ class Video(Scene):
         self.play(Write(j13))
         self.wait(2)
         self.play(FadeOut(j13), TransformMatchingShapes(j12, j14))
-        '''
-        self.play(Write(j14))
-        #Remove only after the last scene
-
         self.play(j14.animate.to_corner(UL).set_color(PURE_RED))
         self.play(Write(j15))
         self.play(Write(j16))
@@ -127,15 +123,38 @@ class Video(Scene):
         self.play(TransformMatchingShapes(j21, j22))
         self.wait(2)
         self.play(Write(j23))
-        self.play(TransformMatchingShapes(j22, j23))
-        
+        self.play(TransformMatchingShapes(j23, j24))
+        self.wait(2)
+        self.play(TransformMatchingShapes(VGroup(j24[0][11::], j22), j25))
+        self.play(FadeOut(j24[0][:11]))
+        self.wait(2)
+        self.play(TransformMatchingShapes(j25, j26))
+        self.play(TransformMatchingShapes(j26, j27))
+        self.play(Write(j28))
+        self.wait(2)
+        self.play(Write(j29))
+        self.play(TransformMatchingShapes(j27, j30))
+        self.play(Write(j31))
+        self.wait(1)
+        self.play(TransformMatchingTex(VGroup(j28, j31), j32))
+        self.wait(1)
+        self.play(ReplacementTransform(j29, j33))
+        self.wait(1)
+        self.play(TransformMatchingShapes(j30, j34), TransformMatchingShapes(j32, j35))
+        self.play(TransformMatchingShapes(j34, j36), TransformMatchingShapes(j35, j37))
+        self.play(Create(endrect), run_time=3)
+        self.play(Write(j38))
+        self.wait(2)
+        self.play(FadeOut(j33, j36, j37, j38, endrect))
+        self.clear()
+        '''
         #Tautochrone Intro
         '''
         self.play(Write(tauto))
         self.play(Write(tauto0.next_to(tauto, DOWN)))
-        self.play(Write(t1))
+        self.play(Write(t0))
         self.wait(2)
-        self.play(FadeOut(tauto, tauto0, t1))
+        self.play(FadeOut(tauto, tauto0, t0))
         self.clear()
         '''
         #Tautochrone Graph
@@ -154,7 +173,17 @@ class Video(Scene):
         #Tautochrone
         '''
         start0(self)
+        self.play(Write(t7))
+        self.wait(2)
+        self.play(Write(t8))
+        self.wait(2)
+        self.play(FadeOut(t7), TransformMatchingShapes(t62, t9))
+        self.wait(2)
+        self.play(TransformMatchingShapes(VGroup(t8, t9), t10))
+        self.wait(1)
         '''
+        for a, b in zip([t10, t11, t12, t13, t14, t15], [t11, t12, t13, t14, t15, t16]): self.play(TransformMatchingShapes(a, b))
+
         #Cycloid
         r'''
         self.play(Create(axes), Create(diagonallines))
