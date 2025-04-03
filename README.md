@@ -1,4 +1,4 @@
-# Manim Animation – *Video*
+# Manim Animation – *Brachistochrone and Tautochrone*
 
 This repository contains the source code for the Manim animation featured in my YouTube video: 
 - 🎬 [**Watch the video here**](https://youtu.be/WNAjoFpIAFk)
