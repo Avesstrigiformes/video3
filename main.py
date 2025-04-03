@@ -6,44 +6,42 @@ from Scenes.cycloid import *
 
 ###NOTE: Keep in mind that the render will be long, so you might want to split it into multiple classes if you want to keep track of the code. I will just put everything in one class for some rendering purposes.
 
-#TODO: Edit Outro, readme.
-
 class Video(Scene):
     def construct(self):
+
         #Intro
-        '''
         self.play(Create(rect), Write(PROBLEM), run_time=5)
         self.wait(5)
         self.play(Write(t))
         self.play(Flash(t, line_length=0.5, num_lines=50, color=GREEN, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
         self.play(FadeOut(PROBLEM, t, rect))
         self.clear()
-        '''
+
         #Brachistochrone Intro
-        '''
+
         self.play(Write(brachisto))
         self.play(Write(brachisto0.next_to(brachisto, DOWN)))
         self.play(Write(r1))
         self.wait(2)
         self.play(FadeOut(brachisto, brachisto0, r1))
         self.clear()
-        '''
+
         #Brachistochrone Graph
-        '''
-        self.play(Create(brachistochrone1), Create(straight), Create(arc))
+
+        self.play(Create(brachistochrone1), Create(straight), Create(arcf))
         self.play(Write(start_label), Write(end_label))
         self.play(Write(rendered_code1), Write(rendered_code2.next_to(rendered_code1, LEFT)), Write(rendered_code3.next_to(rendered_code1, DOWN)))
-        self.play(MoveAlongPath(dot1, brachistochrone1, rate_func=acceleration2), MoveAlongPath(dot2, straight, rate_func=acceleration2), MoveAlongPath(dot3, arc, rate_func=acceleration2), run_time=2)
+        self.play(MoveAlongPath(dot1, brachistochrone1, rate_func=acceleration2), MoveAlongPath(dot2, straight, rate_func=acceleration2), MoveAlongPath(dot3, arcf, rate_func=acceleration2), run_time=2)
         self.play(Write(a0))
         self.play(Write(binfo))
         self.wait(2)
         self.play(Write(bstart))
         self.play(Flash(bstart, line_length=0.5, num_lines=50, color=BLUE, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
-        self.play(FadeOut(brachistochrone1, straight, arc, start_label, end_label, rendered_code1, rendered_code2, rendered_code3, dot1, dot2, dot3, a0, binfo, bstart))
+        self.play(FadeOut(brachistochrone1, straight, arcf, start_label, end_label, rendered_code1, rendered_code2, rendered_code3, dot1, dot2, dot3, a0, binfo, bstart))
         self.clear()
-        ''' 
+ 
         #Brachistochrone
-        '''
+
         start0(self)
         self.play(Write(b00))
         self.play(Write(b01), Create(b04))
@@ -53,11 +51,12 @@ class Video(Scene):
         self.play(Write(b03))
         self.play(FadeOut(b00, b01, b02, b03, t62))
         self.clear()
-        '''
+
         #Beltrami
-        '''
+
         self.play(Write(b1))
         self.play(Write(b10),Write(b11.next_to(b10, UP)))
+        self.wait(1)
         self.play(FadeOut(b10), FadeOut(b11), ReplacementTransform(b1,b2))
         self.play(ReplacementTransform(b2,b20))
         self.play(Write(b3))
@@ -80,10 +79,9 @@ class Video(Scene):
         self.wait(1)
         self.play(ReplacementTransform(b6, b7))
         self.play(TransformMatchingShapes(b7, b8))
-        '''
+
         #Brachistochrone 2
-        '''
-        self.play(Write(b8))
+
         self.play(b8.animate.to_corner(UL).set_color(GREEN))
         self.play(Write(j1))
         self.play(j1.animate.shift(DOWN), Write(j2))
@@ -147,18 +145,18 @@ class Video(Scene):
         self.wait(2)
         self.play(FadeOut(j33, j36, j37, j38, endrect))
         self.clear()
-        '''
+
         #Tautochrone Intro
-        '''
+
         self.play(Write(tauto))
         self.play(Write(tauto0.next_to(tauto, DOWN)))
         self.play(Write(t0))
         self.wait(2)
         self.play(FadeOut(tauto, tauto0, t0))
         self.clear()
-        '''
+
         #Tautochrone Graph
-        '''
+ 
         self.play(Create(brachistochrone1))
         self.play(Write(start_label), Write(end_label))
         self.play(Write(rendered_code0))
@@ -169,9 +167,9 @@ class Video(Scene):
         self.play(Flash(tstart, line_length=0.5, num_lines=50, color=ORANGE, flash_radius=1.1, time_width=0.5, run_time=2, rate_func = rush_from))
         self.play(FadeOut(brachistochrone1, start_label, end_label, rendered_code0, dot1, dot2, dot3, tinfo, tstart))
         self.clear()
-        '''
+
         #Tautochrone
-        '''
+
         start0(self)
         self.play(Write(t7))
         self.wait(2)
@@ -179,13 +177,62 @@ class Video(Scene):
         self.wait(2)
         self.play(FadeOut(t7), TransformMatchingShapes(t62, t9))
         self.wait(2)
-        self.play(TransformMatchingShapes(VGroup(t8, t9), t10))
+        fakebreakpoint = VGroup(t8, t9)
+        self.play(ClockwiseTransform(fakebreakpoint, t10))
         self.wait(1)
-        '''
-        for a, b in zip([t10, t11, t12, t13, t14, t15], [t11, t12, t13, t14, t15, t16]): self.play(TransformMatchingShapes(a, b))
+        for a, b in zip([fakebreakpoint, t11, t12, t13, t14, t15], [t11, t12, t13, t14, t15, t16]): self.play(TransformMatchingShapes(a, b))
+        self.play(t16.animate.shift(UP))
+        self.play(DrawBorderThenFill(t17))
+        self.play(t16.animate.shift(UP), t17.animate.shift(UP), DrawBorderThenFill(t18))
+        self.wait(3)
+        self.play(FadeOut(t16, t17, t18))
+        self.play(Write(t19))
+        for a, b in [(t19, t20), (t20, t21), (t21,t211), (t211, t22), (t22, t23)]: self.wait(1); self.play(TransformMatchingShapes(a, b))
+        self.play(t23.animate.to_corner(UL))
+        self.wait(1)
+        self.play(Write(t24), run_time=3)
+        self.play(TransformMatchingShapes(t24 , t25))
+        self.play(TransformMatchingShapes(VGroup(t23, t25), t26), run_time=3)
+        self.play(TransformMatchingShapes(t26, t27))
+        self.wait(1)
+        self.play(Write(integralinfo))
+        self.wait(2)
+        self.play(Write(integralsub))
+        self.wait(2)
+        self.play(Write(integralsub2))
+        self.play(FadeOut(integralinfo), Write(integralsub3))
+        self.wait(2)
+        self.play(TransformMatchingShapes(t27, t28))
+        self.wait(2)
+        self.play(TransformMatchingShapes(VGroup(t28, integralsub, integralsub2), t29))
+        self.wait(1)
+        self.play(DrawBorderThenFill(t30), FadeOut(integralsub3))
+        self.play(TransformMatchingShapes(t29, t31))
+        self.wait(1)
+        self.play(TransformMatchingShapes(VGroup(t30, t31), t32))
+        self.wait(1)
+        self.play(DrawBorderThenFill(t33))
+        self.play(TransformMatchingShapes(t32, t34))
+        self.play(Unwrite(t33))
+        self.play(t34.animate.to_edge(DOWN).set_color(PURE_RED))
+        self.play(Create(ax))
+        self.play(Create(cyc))
+        self.play(Create(end_point), FadeIn(dotlabelcyc))
+        self.play(MoveAlongPath(dot2cyc, cyc), MaintainPositionRelativeTo(dot2labelcyc, dot2cyc), run_time=5, rate_func = rate_functions.ease_in_bounce)
+        self.play(Write(t35))
+        self.wait(1)
+        jjj = cancel(t34[0][9::])
+        self.play(Create(jjj), Write(addendum))
+        self.play(TransformMatchingShapes(t34[0][0:9], t36), FadeOut(t34[0][9::], jjj), MaintainPositionRelativeTo(dotlabelcyc, end_point), UpdateFromAlphaFunc(cyc, update_cycloid_and_dot),run_time=5)
+        self.play(ReplacementTransform(t35, t37), FadeOut(addendum))
+        self.wait(3)
+        self.play(FadeOut(t36, t37, cyc, ax, end_point, dotlabelcyc, dot2cyc, dot2labelcyc))
+        self.play(GrowFromCenter(helpmeout), run_time=2)
+        self.play(FadeOut(helpmeout, scale=6))
+        self.clear()
 
         #Cycloid
-        r'''
+
         self.play(Create(axes), Create(diagonallines))
         self.play(Create(circle), Create(dot), Create(path), Write(info))
         self.add(radius, centerline, centerr, perpendicularline, groundline, angle)
@@ -218,15 +265,13 @@ class Video(Scene):
         self.play(Unwrite(r2), Unwrite(theta))
         update_all()
         self.wait(7)
-        self.play(FadeOut(axes, diagonallines, path, info, groundline))
+        self.play(FadeOut(axes, diagonallines, path, info, groundline, final))
         self.clear()            
-        '''
+
         #Outro
-        '''
-        self.play(Write(end, run_time=8))
+
+        self.play(Write(end, run_time=7))
         self.play(DrawBorderThenFill(endgroup))
-        self.wait(4)
+        self.wait(3.5)
         self.play(FadeOut(end, endgroup), DrawBorderThenFill(tfw))
-        self.wait(3)
-        '''
-        self.wait(5)
+        self.wait(6)

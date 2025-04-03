@@ -51,7 +51,7 @@ green = ParametricFunction(
     t_range = array([0, 1])
 )'''
 straight = Line(start, end, color=RED)
-arc = ParametricFunction(
+arcf = ParametricFunction(
     lambda t: array([
         start[0] + (end[0] - start[0])*(t**20),
         start[1] + (end[1] - start[1])*t,
